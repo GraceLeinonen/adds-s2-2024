@@ -3,8 +3,10 @@
 #include <string>
 
 class Move {
+    private:
+    std::string name;
 
     public:
-    std::string getName();
+    virtual std::string getName();
 
 };

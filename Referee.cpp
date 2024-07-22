@@ -1,11 +1,12 @@
 #include "Referee.h"
+#include "Move.h"
 
 Referee::Referee() {} // have to include default constructor
 
 Player* Referee::refGame(Player* player1, Player* player2) {
 
-    char move1 = player1->makeMove();
-    char move2 = player2->makeMove();
+    Move move1 = player1->makeMove();
+    Move move2 = player2->makeMove();
 
     if (move1 == move2) {
 
