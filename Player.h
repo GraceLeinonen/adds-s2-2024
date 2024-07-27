@@ -7,10 +7,10 @@
 class Player {
     protected:
     std::string name;
-    std::string move;
+    Move* move;
 
     public:
-    virtual Move makeMove() = 0;
+    virtual Move* makeMove() = 0;
     virtual std::string getName() = 0;
 
 };

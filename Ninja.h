@@ -2,11 +2,11 @@
 
 #include "Move.h"
 
-class Rock : public Move {
+class Ninja : public Move {
 
     public:
-    Rock();
-    ~Rock();
+    Ninja();
+    ~Ninja();
     int compare(Move move);
 
 };

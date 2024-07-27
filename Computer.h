@@ -8,7 +8,7 @@ class Computer : public Player {
 
     public:
     Computer();
-    std::string makeMove() override;
+    Move* makeMove() override;
     std::string getName() override;
 
 };
