@@ -7,18 +7,18 @@
 
 int main() {
 
-    Player* h1 = new Human("Grace");
-    Player* h2 = new Human();
+    Player* h1 = new Human();
+    Player* c2 = new Computer();
     Referee r;
 
-    Player* winner = r.refGame(h1, h2);
+    Player* winner = r.refGame(h1, c2);
 
     if (winner == h1) {
         std::cout << h1->getName() << " Wins" << std::endl;
     }
 
-    else if (winner == h2) {
-        std::cout << h2->getName() << " Wins" << std::endl;
+    else if (winner == c2) {
+        std::cout << c2->getName() << " Wins" << std::endl;
     }
 
     else if (winner == NULL) {
