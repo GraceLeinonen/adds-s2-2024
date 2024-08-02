@@ -6,8 +6,8 @@
 class Move {
     protected:
     std::string name;
-    std::vector<std::string> beats;
-    std::vector<std::string> loses;
+    std::vector<std::string> beats; // stores list of moves that this move beats
+    std::vector<std::string> loses; // stores list of moves that this move loses to
 
 
     public:
