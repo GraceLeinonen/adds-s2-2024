@@ -5,12 +5,17 @@
 
 int Reverser::reverseDigit(int value) {
 
-    //*1 base case
+    //*1 handling errors
+    if (value < 0) {
+        return -1;
+    }
+
+    //*2 base case
     if (value <= 0) {
         return 0;
     }
 
-    //*2 maths
+    //*3 logic
     // find total digits in value
     int numDigits = (int)log10(value);
 
@@ -20,18 +25,23 @@ int Reverser::reverseDigit(int value) {
     // shift it to desired base
     int newDigit = digit * pow(10, numDigits);
 
-    //*3 recursive case
+    //*4 recursive case
     return (newDigit + reverseDigit(value/10));
 }
 
 std::string Reverser::reverseString(std::string characters) {
+
+    // handling errors
+    if (characters == "") {
+        return "ERROR";
+    }
 
     // base case
     if (characters.size() <= 1) {
         return characters;
     }
 
-    // maths
+    // logic
     std::string newString = characters.substr(characters.size()-1);
     std::string leftoverString = characters.substr(0, characters.size()-1);
 

@@ -7,7 +7,7 @@ int Truckloads::numTrucks(int numCrates, int loadSize) {
         return 1;
     }
 
-    // maths
+    // logic
     int trucks;
     int numHalfCrates = numCrates / 2;
 
