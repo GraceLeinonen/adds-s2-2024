@@ -11,3 +11,14 @@ int DigitSum::findDigitSum(int value) {
     // recursive case
     return (value % 10) + findDigitSum(value/10);
 }
+
+int DigitSum::findDigitSumTail(int value, int acc) {
+
+    // base case
+    if (value <= 0) {
+        return acc;
+    }
+
+    // recursive case
+    return findDigitSumTail(value/10, acc + (value % 10));
+}

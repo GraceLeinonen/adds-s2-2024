@@ -9,3 +9,13 @@ int Factorial::findFactorial(int n) {
     return n * findFactorial(n - 1);
 
 }
+
+int Factorial::findFactorialTail(int n, int acc) {
+
+    if (n <= 1) {
+        return acc;
+    }
+
+    return findFactorialTail((n - 1), n * acc);
+
+}
