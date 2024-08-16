@@ -12,3 +12,15 @@ int Power::Pow(int a, int b) {
     return a * Pow(a, b-1);
 
 };
+
+int Power::PowTail(int a, int b, int acc) {
+
+    // base case
+    if (b == 0) {
+        return acc;
+    }
+
+    // recursive case
+    return PowTail(a, b-1, a * acc);
+
+};

@@ -35,3 +35,39 @@ int EvenAndOdd::odd(int a, int b) {
     return num + odd(a, b - 1);
 
 }
+
+int EvenAndOdd::evenTail(int a, int b, int acc) {
+    
+    // base case
+    if (b < a) {
+        return acc;
+    }
+
+    // logic
+    int num = 0;
+    if (b % 2 == 0) {
+        num = b;
+    }
+
+    // recursive case
+    return evenTail(a, b - 1, acc + num);
+
+}
+
+int EvenAndOdd::oddTail(int a, int b, int acc) {
+    
+    // base case
+    if (b < a) {
+        return acc;
+    }
+
+    // logic
+    int num = 0;
+    if (b % 2 != 0) {
+        num = b;
+    }
+
+    // recursive case
+    return oddTail(a, b - 1, acc + num);
+
+}
