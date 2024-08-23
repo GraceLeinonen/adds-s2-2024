@@ -6,7 +6,6 @@
 
         // initialise array of results to -1 and set index to 0
         std::vector<int> results(s2.size(), -1);
-        int index = 0;
 
         // intialise found to 0 to begin
         size_t found = 0;
@@ -21,8 +20,7 @@
             if (found != string::npos) {
 
                 // put index of occurence in string
-                results[index] = found;
-                index++;
+                results[i-1] = found;
 
             } else {
 
