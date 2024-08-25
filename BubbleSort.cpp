@@ -7,7 +7,7 @@ void BubbleSort::sort(std::vector<int>& array) {
             if (array.at(j) > array.at(j+1)) {
 
                 int temp = array.at(j);
-                array[j] = array.at(j+2);
+                array[j] = array.at(j+1);
                 array[j+1] = temp;
             }
         }
