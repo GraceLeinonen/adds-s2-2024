@@ -3,9 +3,9 @@
 
 int main() {
 
-    std::vector<int> array = {1,3,7,5,8,3};
+    std::vector<int> array = {10,8,6,2,0};
     QuickSort quickSort;
-    quickSort.sort2(array, 0, 5);
+    quickSort.sort(array);
 
     for (int i = 0; i < array.size(); i++) {
 
@@ -13,4 +13,4 @@ int main() {
     }
 
     std::cout << std::endl;
-}
+} 
