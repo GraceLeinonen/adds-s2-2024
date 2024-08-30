@@ -1,6 +1,6 @@
 #include "QuickSort.h"
 
-void QuickSort::sort(std::vector<int>& array, int start, int end) {
+void QuickSort::sort2(std::vector<int>& array, int start, int end) {
     
     // base case, nothing to sort
     if (start >= end) {
@@ -19,6 +19,7 @@ void QuickSort::sort(std::vector<int>& array, int start, int end) {
     }
 
     int pivot_index = start;
+    int pivot_final_index = 0;
     
     for (int i = start; i < end; i++) {
 
@@ -28,22 +29,19 @@ void QuickSort::sort(std::vector<int>& array, int start, int end) {
             int temp = array.at(i);
             array[i] = array.at(pivot_index);
             array[pivot_index] = temp;
+
+            // increment pivot_final_index
+            pivot_final_index++;
+
         }
     }
 
-    int pivot_position;
-    // find position of pivot
-    for (int i = 0; i < array.size(); i++) {
-        if (array[i] = pivot) {
-            pivot_position = i;
-        }
-    }
     // swap the pivot_index element and pivot
     int temp = array.at(pivot_index);
-    array[pivot_index] = array.at(pivot_position);
-    array[pivot_position] = temp;
+    array[pivot_index] = array.at(pivot_final_index);
+    array[pivot_final_index] = temp;
 
     // call sort for subarrays
-    sort(array, start, pivot_index - 1);
-    sort(array, pivot_index + 1, end);
+    sort2(array, start, pivot_index - 1);
+    sort2(array, pivot_index + 1, end);
 }
