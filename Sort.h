@@ -6,8 +6,7 @@
 class Sort {
 
     public:
-    virtual std::vector<int> sort(std::vector<int> array);
-    virtual void sort(std::vector<int>& array);
+    virtual std::vector<int> sort(std::vector<int> array) = 0;
 
 
 };

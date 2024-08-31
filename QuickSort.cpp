@@ -1,46 +1,54 @@
 #include "QuickSort.h"
 
-void QuickSort::sort(std::vector<int>& array) {
-    
-    // define start and end
-    int start = 0;
-    int end = array.size() - 1;
-
+std::vector<int> QuickSort::sort(std::vector<int> array) {
 
     // base case
-    if (array.size() == 1) {
+    if (array.size() <= 1) {
+        return array;
     }
 
-    // initialise
-    int pivot = array.at(end);
-    int pivot_index = start; 
+    // initialise pivot to be third element (or first if not enough elements)
+    int pivot = array.size() >= 3 ? array[2] : array[0];
 
-    for (int i = start; i < end; i++) {
+    // initialise 'less than', 'greater than' and 'equal to' vectors
+    std::vector<int> less;
+    std::vector<int> greater;
+    std::vector<int> equal;
 
-        if (array.at(i) < pivot) {
+    // loop
+    for (int num : array) {
 
-            // swap ith element and element at pivot_index
-            int temp = array.at(i);
-            array[i] = array.at(pivot_index);
-            array[pivot_index] = temp;
+        // check if element is less than pivot
+        if (num < pivot) {
+           less.push_back(num);
+        }
 
-            // increment pivot_index
-            pivot_index++;
+        // check if element is greater than pivot
+        else if (num > pivot) {
 
+            greater.push_back(num);
+        }
+
+        // check if element is equal to pivot
+        else {
+            equal.push_back(num);
         }
     }
 
-    // swap the pivot_index element and pivot
-    int temp = array.at(end);
-    array[end] = array.at(pivot_index);
-    array[pivot_index] = temp;
+    // call quicksort on 'less than' and 'greater than' vectors
+    less = sort(less);
+    greater = sort(greater);
 
-    // create subarrays
-    std::vector<int> front_array(start, pivot_index - 1);
-    std::vector<int> back_array(pivot_index + 1, end);
+    // create final vector and reserve size
+    std::vector<int> final;
+    final.reserve(less.size() + equal.size() + greater.size());
 
-    // call sort for subarrays
-    sort(front_array);
-    sort(back_array);
+    // combine vectors
+    final.insert(final.end(), less.begin(), less.end());
+    final.insert(final.end(), equal.begin(), equal.end());
+    final.insert(final.end(), greater.begin(), greater.end());
+
+    // return final vector
+    return final;
 
 }

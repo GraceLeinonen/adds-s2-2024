@@ -6,7 +6,7 @@
 class QuickSort : public Sort {
 
     public:
-    void sort(std::vector<int>& array);
+    std::vector<int> sort(std::vector<int> array);
 
 };
 
