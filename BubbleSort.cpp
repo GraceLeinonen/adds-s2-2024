@@ -1,6 +1,6 @@
 #include "BubbleSort.h"
 
-void BubbleSort::sort(std::vector<int>& array) {
+std::vector<int> BubbleSort::sort(std::vector<int> array) {
 
     for (int i = array.size() - 1; i > 1; i--) {
         for (int j = 0; j < i; j++) {
@@ -12,4 +12,6 @@ void BubbleSort::sort(std::vector<int>& array) {
             }
         }
     }
+
+    return array;
 }
