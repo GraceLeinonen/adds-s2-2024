@@ -7,7 +7,6 @@ int main() {
 
     // read in integers and put into vector
     std::string input;
-    std::cout << "Enter integers separated by space: ";
     std::getline(std::cin, input);
 
     std::stringstream ss(input); 
