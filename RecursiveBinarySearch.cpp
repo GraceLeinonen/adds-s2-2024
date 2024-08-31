@@ -1,6 +1,7 @@
 #include "RecursiveBinarySearch.h"
+#include <iostream>
 
-bool RecursiveBinarySearch::search(std::vector<int> array, int start, int end, int value) {
+int RecursiveBinarySearch::search(std::vector<int> array, int start, int end, int value) {
 
     if (end >= start) {
 
@@ -13,17 +14,17 @@ bool RecursiveBinarySearch::search(std::vector<int> array, int start, int end, i
         }
 
         // if middle element is greater than element we're looking for
-        if (array[mid] > value) {
+        else if (array[mid] > value) {
             return search(array, start, mid - 1, value);
         }
 
-        // if middle element is less than element we're looking for
-        if (array[mid] < value) {
+        /// if middle element is less than element we're looking for
+
             return search(array, mid + 1, end, value);
-        }
     }
 
-    return 0;
+    // element isn't present in the array
+    return -1;
 }
 
 bool RecursiveBinarySearch::search(std::vector<int> array, int value) {
@@ -33,6 +34,10 @@ bool RecursiveBinarySearch::search(std::vector<int> array, int value) {
     int end = array.size() - 1;
 
     // search
-    return search(array, start, end, value);
+   int index = search(array, start, end, value);
    
+   // return
+   if (index == -1) {return false;}
+
+   else {return true;}
 }

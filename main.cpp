@@ -26,7 +26,7 @@ int main() {
     bool found = binary.search(array, 1);
 
     // read out results
-    if (found = 1) {
+    if (found == true) {
 
         std::cout << "true ";
     }
