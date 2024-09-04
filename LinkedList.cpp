@@ -10,26 +10,48 @@ LinkedList::LinkedList() {
     
 LinkedList::LinkedList(int* array, int len) {
 
-    Node* currNode = head;
-    int index = 0;
+    // 
+    for (int i = 1; i <= len; i++) {
 
-    while (currNode != nullptr && index < len) {
-
-        currNode = currNode->link;
-        index++;
-
-        
+        insertPosition(i, array[i-1]);
     }
 }
 
-LinkedList::~LinkedList() {}
-
-void LinkedList::insertAtPosition(int pos, int newNum) {
+LinkedList::~LinkedList() {
 
     Node* currNode = head;
     Node* prevNode;
     int tempPos = 0;
 
+    // traverse to find length
+    while (currNode != nullptr) {
+
+        prevNode = currNode;
+        currNode = currNode->link;
+        tempPos++;
+    }
+
+    // delete at each positon until you reach the end
+    for (int i = 1; i <= tempPos; i++) {
+
+        deletePosition(i);
+    }
+}
+
+void LinkedList::insertPosition(int pos, int newNum) {
+
+    // add node to front of list
+    if (pos <= 1 || (head == nullptr)) { //! second case deals with if list is currently empty and position > 1
+
+        head = new Node(newNum, head);
+        return;
+    }
+    
+    Node* currNode = head;
+    Node* prevNode;
+    int tempPos = 0;
+
+    // traverse to position
     while (currNode != nullptr && tempPos != pos) {
 
         prevNode = currNode;
@@ -37,15 +59,8 @@ void LinkedList::insertAtPosition(int pos, int newNum) {
         tempPos++;
     }
 
-    if (pos <= 1 || (currNode == nullptr)) { //! second case deals with if list is currently empty and position > 1
-        // add node to front of list
-
-        head = new Node(newNum, head);
-        return;
-    }
-
-    else if (currNode->link == nullptr) { //! if list is not empty and pos >> 1, falls into this case
-        // add node to end of list
+    // add node to end of list
+    if (currNode->link == nullptr) { //! if list is not empty and pos >> 1, falls into this case
 
         Node* newNode = new Node(newNum, nullptr);
         prevNode->link = newNode;
@@ -53,6 +68,7 @@ void LinkedList::insertAtPosition(int pos, int newNum) {
 
     }
 
+    // add node within list
     else {
 
         Node* newNode = new Node(newNum, prevNode->link);
@@ -61,7 +77,50 @@ void LinkedList::insertAtPosition(int pos, int newNum) {
     }
 }
 
-bool LinkedList::deletePosition(int pos) {}
+bool LinkedList::deletePosition(int pos) {
+
+    // nothing to delete if list is empty or index before 1
+    if (head == nullptr || pos < 1) {
+        return false;
+    }
+
+    Node* currNode = head;
+    Node* prevNode;
+    int tempPos = 0;
+
+    // delete node from front of list
+    if (head != nullptr && pos == 1) { //! second case deals with if list is currently empty and position > 1
+
+        head = currNode->link;
+        head = head->link;
+        delete currNode;
+
+        return true;
+    }
+
+    // traverse to position
+    while (currNode != nullptr && tempPos != pos) {
+
+        prevNode = currNode;
+        currNode = currNode->link;
+        tempPos++;
+    }
+
+    
+    if (pos > tempPos) { //! if you reach nullptr before position, then position is out of bounds, so can't delete
+
+        return false;
+
+    }
+
+    else {
+
+        prevNode->link = currNode->link;
+        delete currNode;
+
+        return true;
+    }
+}
 
 int LinkedList::get(int pos) {
 

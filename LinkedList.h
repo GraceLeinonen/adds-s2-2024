@@ -20,7 +20,7 @@ class LinkedList {
     ~LinkedList();
 
     // method to insert a new node containing the number newNum into the pos position
-    void insertAtPosition(int pos, int newNum);
+    void insertPosition(int pos, int newNum);
 
     // method to remove the node at position pos from the list and delete it
     bool deletePosition(int pos);
