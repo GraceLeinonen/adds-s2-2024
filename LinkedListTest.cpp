@@ -11,7 +11,7 @@ LinkedListTest::LinkedListTest() {
 LinkedListTest::LinkedListTest(int* array, int len) {
 
     head = nullptr; 
-    
+
     for (int i = 1; i <= len; i++) {
 
         insertPosition(i, array[i-1]);
@@ -43,7 +43,7 @@ void LinkedListTest::insertPosition(int pos, int newNum) {
     Node* prevNode = head;
     int index = 1; //! WHY???
 
-    // traverse to position before
+    // traverse to position before or end of list
     while (prevNode != nullptr && index < pos - 1) {
 
         prevNode = prevNode->link;
@@ -51,22 +51,27 @@ void LinkedListTest::insertPosition(int pos, int newNum) {
 
     }
 
+    //! go over this!!! I DON'T UNDERSTAND THIS!
     // check if position is out of bounds
+    if (prevNode == nullptr) {
 
-    // add node to end of list
-    // if (prevNode->link == nullptr) {
+        // add node to end of list
+        Node* lastNode = head;
 
-       // Node* newNode = new Node(newNum, nullptr);
-       // prevNode->link = newNode;
-       // return;
+        while (lastNode->link != nullptr) {
+            lastNode = lastNode->link;
+        }
+        lastNode->link = new Node(newNum, nullptr);
 
-    // }
+    }
 
     // add node within list
+    else {
 
         Node* newNode = new Node(newNum, prevNode->link);
         prevNode->link = newNode;
         return;
+    }
 }
 
 bool LinkedListTest::deletePosition(int pos) {
@@ -150,7 +155,7 @@ int LinkedListTest::get(int pos) {
 int LinkedListTest::search(int target) {
 
     Node* currNode = head;
-    int index = 1; //! WHY???
+    int index = 1;
 
     while (currNode != nullptr) {
 

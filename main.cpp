@@ -32,12 +32,12 @@ int main() {
     ll.printList();
     ll.insertPosition(1,1);
     ll.printList();
-    int array2[] = {1,2,3};
-    LinkedListTest ll2(array2, 3);
+    int array[] = {1,2,3};
+    LinkedListTest ll2(array, 3);
     ll2.printList();
-    int array3[] = {0};
-    LinkedListTest ll3(array3, 1);
-    ll3.printList();
+    ll2.insertPosition(10,1);
+    ll2.printList();
     
+
     return 0;
 }
