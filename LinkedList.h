@@ -6,7 +6,7 @@
 class LinkedList {
 
     private:
-    Node* head;
+    Node* head; //! head is a reference to the first node
 
     public:
     LinkedList();
