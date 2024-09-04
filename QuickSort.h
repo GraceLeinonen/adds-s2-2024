@@ -2,10 +2,9 @@
 #define QUICKSORT_H
 
 #include <vector>
-#include "Sort.h"
 #include "Swap.h"
 
-class QuickSort : public Sort {
+class QuickSort {
 
     private:
     Swap swap;
