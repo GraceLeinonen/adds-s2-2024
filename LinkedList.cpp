@@ -3,77 +3,109 @@
 
 LinkedList::LinkedList() {
     
-    head = nullptr; //! head initially points to nullptr as list is empty
+    head = nullptr; 
+
 }
 
-LinkedList::~LinkedList() {
     
-    while (head != nullptr) {
+LinkedList::LinkedList(int* array, int len) {
+
+    Node* currNode = head;
+    int index = 0;
+
+    while (currNode != nullptr && index < len) {
+
+        currNode = currNode->link;
+        index++;
+
         
-        deleteFromFront();
     }
 }
 
-void LinkedList::printList() {
-    
-    Node* currNode = head; //! start at head
+LinkedList::~LinkedList() {}
+
+void LinkedList::insertAtPosition(int pos, int newNum) {
+
+    Node* currNode = head;
+    Node* prevNode;
+    int tempPos = 0;
+
+    while (currNode != nullptr && tempPos != pos) {
+
+        prevNode = currNode;
+        currNode = currNode->link;
+        tempPos++;
+    }
+
+    if (pos <= 1 || (currNode == nullptr)) { //! second case deals with if list is currently empty and position > 1
+        // add node to front of list
+
+        head = new Node(newNum, head);
+        return;
+    }
+
+    else if (currNode->link == nullptr) { //! if list is not empty and pos >> 1, falls into this case
+        // add node to end of list
+
+        Node* newNode = new Node(newNum, nullptr);
+        prevNode->link = newNode;
+        return;
+
+    }
+
+    else {
+
+        Node* newNode = new Node(newNum, prevNode->link);
+        prevNode->link = newNode;
+        return;
+    }
+}
+
+bool LinkedList::deletePosition(int pos) {}
+
+int LinkedList::get(int pos) {
+
+    Node* currNode = head;
+    int index = 0;
+
+    while (currNode != nullptr && index < pos) {
+
+        currNode = currNode->link;
+        index++;
+    }
+
+    return currNode->data;
+}
+
+int LinkedList::search(int target) {
+
+    Node* currNode = head;
+    int index = 0;
 
     while (currNode != nullptr) {
 
-        std::cout << currNode->data <<std::endl; //! get out the data from where the current node is pointing to
-        currNode = currNode->link; //! move to the next node
+        currNode = currNode->link;
+        index++;
+
+        if (currNode->data == target) {
+            
+            return index;
+        }
+    }
+
+    return -1;
+}
+
+void LinkedList::printList() {
+
+    Node* currNode = head;
+
+    while (currNode != nullptr) {
+
+        currNode = currNode->link;
+
+        std::cout << " [" << currNode->data << "] ";
     }
 
     std::cout << std::endl;
 }
-
-Node* LinkedList::traverse(unsigned int index) {
-
-    unsigned int position = 0; //! head has position 0
-    Node* currNode = head; //! start at head
-
-    while (currNode != nullptr && position < index) {
-        
-        currNode = currNode->link; //! move to next node
-        position++; //! update position
-    }
-
-    //! once position = index, you will get the node which points to the node whose information you want
-    return currNode;
-}
-
-void LinkedList::insertAtPosition(int item, unsigned int index) {
-
-    // if adding in front of the current head (including if the list is empty)
-    if (index == 0) {
-
-        head = new Node(item, head); //! head contains the address of a node, which contains an item and a link to the previous first element (i.e. the origial head)
-        return;
-    }
-
-    // if inserting between two nodes; i.e. [A, C] -> [A, B, C]
-    Node* prevNode = traverse(index - 1);
-
-    // if inserting out of bounds, abort
-    if (prevNode == nullptr) {
-
-        return;
-    }
-
-    Node* newNode = new Node(item, prevNode->link); //! create a new node, which contains an item and the link that the previous node was pointing to
-    prevNode->link = newNode; //! the previous nodes link will now be the new node (IMAGINE A TRIANGLE)
-
-}
-
-void LinkedList::deleteFromFront() {
-
-    if (head == nullptr) {
-
-        return;
-    }
-
-    Node* temp = head; //! create a temporary node pointer which points the same node that head points to, since we need to store the address of the node we want to delete
-    head = head->link; //! head is now pointing to the next node
-    delete temp; //! can delete node using temporary node pointer
-}
-
