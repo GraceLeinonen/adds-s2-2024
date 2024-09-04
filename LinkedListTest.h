@@ -1,9 +1,9 @@
-#ifndef LINKEDLIST_H
-#define LINKEDLIST_H
+#ifndef LINKEDLISTTEST_H
+#define LINKEDLISTTEST_H
 
 #include "Node.h"
 
-class LinkedList {
+class LinkedListTest {
 
     private:
     Node* head;
@@ -11,13 +11,13 @@ class LinkedList {
     public:
     
     // default constructor
-    LinkedList();
+    LinkedListTest();
 
     // constructor that creates a list from a C-array of length len
-    LinkedList(int* array, int len);
+    LinkedListTest(int* array, int len);
 
     // destructor that deletes all nodes from the list
-    ~LinkedList();
+    ~LinkedListTest();
 
     // method to insert a new node containing the number newNum into the pos position
     void insertPosition(int pos, int newNum);
@@ -33,6 +33,7 @@ class LinkedList {
 
     // method that prints data of all the nodes in the list
     void printList();
+    
 
 };
 

@@ -20,7 +20,7 @@ LinkedList::LinkedList(int* array, int len) {
 LinkedList::~LinkedList() {
 
     Node* currNode = head;
-    Node* prevNode;
+    Node* prevNode = nullptr;
     int tempPos = 0;
 
     // traverse to find length
@@ -41,26 +41,24 @@ LinkedList::~LinkedList() {
 void LinkedList::insertPosition(int pos, int newNum) {
 
     // add node to front of list
-    if (pos <= 1 || (head == nullptr)) { //! second case deals with if list is currently empty and position > 1
+    if (head == nullptr || pos <= 1) {
 
         head = new Node(newNum, head);
         return;
     }
     
-    Node* currNode = head;
-    Node* prevNode;
-    int tempPos = 0;
+    Node* prevNode = head;
+    int prevPos = 0;
 
-    // traverse to position
-    while (currNode != nullptr && tempPos != pos) {
+    // traverse to position before
+    while (prevNode != nullptr && prevPos < pos - 1) {
 
-        prevNode = currNode;
-        currNode = currNode->link;
-        tempPos++;
+        prevNode = prevNode->link;
+        prevPos++;
     }
 
     // add node to end of list
-    if (currNode->link == nullptr) { //! if list is not empty and pos >> 1, falls into this case
+    if (prevNode == nullptr) {
 
         Node* newNode = new Node(newNum, nullptr);
         prevNode->link = newNode;

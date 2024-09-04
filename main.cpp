@@ -1,37 +1,43 @@
 #include <iostream>
-#include "LinkedList.h"
-
-using namespace std;
+#include <vector>
+#include <limits>
+#include "Node.h"
+#include "LinkedListTest.h"
 
 int main() {
 
-    // build and initialize a linked list object named ll
-    LinkedList ll;
-    ll.insertAtPosition(9, 0); // insert a node into an empty list
-    ll.insertAtPosition(3, 0); // insert a node infront of the only node
-    ll.insertAtPosition(6, 1); // insert a node between our two nodes
-    ll.insertAtPosition(12, 10); // insert a node out of bounds
-    ll.insertAtPosition(12, 3); // insert a node at the end of the list
+    LinkedListTest ll;
+    ll.insertPosition(-1,5);
+    ll.printList();
+    ll.insertPosition(1,1);
+    ll.printList();
+    ll.insertPosition(-100,3);
+    ll.printList();
+    ll.insertPosition(2,9);
+    ll.printList();
+    ll.insertPosition(5,10);
+    ll.printList();
+    int index = ll.search(1);
+    int num = ll.get(3);
+    std::cout << "The number is at position: " << index << std::endl;
+    std::cout << "The number at position is: " << num << std::endl;
+    bool didDelete = ll.deletePosition(3);
+    std::cout << didDelete << std::endl;
+    ll.printList();
+    didDelete = ll.deletePosition(-1);
+    std::cout << didDelete << std::endl;
+    didDelete = ll.deletePosition(100);
+    std::cout << didDelete << std::endl;
+    ll.~LinkedListTest();
+    ll.printList();
+    ll.insertPosition(1,1);
+    ll.printList();
+    int array2[] = {1,2,3};
+    LinkedListTest ll2(array2, 3);
+    ll2.printList();
+    int array3[] = {0};
+    LinkedListTest ll3(array3, 1);
+    ll3.printList();
     
-    // traverse and print the linked list
-    ll.printList(); // prints [3, 6, 9]
-    std::cout << "---" << std::endl;
-
-    // traverse to specific nodes (0, 1, 2, 3) and print the data at these (handles out of bounds access)
-    for (unsigned int i = 0; i < 4; i++) {
-        Node* target = ll.traverse(i);
-
-        if (target != nullptr) {
-
-            std::cout << target->data << std::endl;
-
-        }
-        
-        else {
-        
-        std::cout << "there is no data here, target = nullptr" << std::endl;
-        }
-    }
-
-return 0;
+    return 0;
 }
