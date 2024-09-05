@@ -1,33 +1,30 @@
 #include <vector>
 #include <iostream>
 
-class InsertionSort {
+class BubbleSort {
 
     public:
     void sort(std::vector<int>& array) {
 
-        for (int i = 1; i < array.size(); i++) {
+        for (int i = array.size() - 1; i >= 0; i--) {
 
-            for (int j = i; j >= 0; j--) {
+            for (int j = 0; j < i; j++) {
 
-                if (array[j] < array[j-1]) {
+                if (array[j] > array[j+1]) {
 
                     int temp = array[j];
-                    array[j] = array[j-1];
-                    array[j-1] = temp;
+                    array[j] = array[j+1];
+                    array[j+1] = temp;
                 }
-
-                else break;
             }
         }
     }
 };
 
-/*
 int main() {
     
     std::vector<int> array = {3,2,6,8,1};
-    InsertionSort sort;
+    BubbleSort sort;
     sort.sort(array);
     
     for (int i = 0; i < array.size(); i++) {
@@ -39,4 +36,3 @@ int main() {
  
     return 0;
 }
-*/
