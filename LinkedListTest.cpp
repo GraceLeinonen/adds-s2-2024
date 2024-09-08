@@ -5,7 +5,6 @@
 LinkedListTest::LinkedListTest() {
     
     head = nullptr; 
-
 }
 
 LinkedListTest::LinkedListTest(int* array, int len) {
@@ -27,7 +26,6 @@ LinkedListTest::~LinkedListTest() {
         deletePosition(1);
 
     }
-
 }
 
 void LinkedListTest::insertPosition(int pos, int newNum) {
@@ -120,7 +118,6 @@ bool LinkedListTest::deletePosition(int pos) {
     }
 }
 
-
 int LinkedListTest::get(int pos) {
 
     // if trying to access before list
@@ -189,4 +186,3 @@ void LinkedListTest::printList() {
     std::cout << "]" << std::endl;
 
 }
-    
