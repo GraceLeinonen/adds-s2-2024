@@ -1,3 +1,4 @@
+/*
 #include <iostream>
 #include <vector>
 #include <limits>
@@ -102,6 +103,8 @@ int main(void) {
 	return 0;
 }
 
+*/
+
 /*
 #include <iostream>
 #include <vector>
@@ -148,7 +151,6 @@ int main() {
 }
 */
 
-/*
 #include <iostream>
 #include <list>
 #include <string>
@@ -159,8 +161,8 @@ int main() {
 
     BigNumCalc calc;
 
-    std::string num1String = "9876543210";
-    std::string num2String = "1234567890";
+    std::string num1String = "1000";
+    std::string num2String = "9";
 
     std::list<int> num1 = calc.buildBigNum(num1String);
     std::list<int> num2 = calc.buildBigNum(num2String);
@@ -175,4 +177,3 @@ int main() {
 
     return 0;
 }
-*/

@@ -24,7 +24,6 @@ std::list<int> BigNumCalc::buildBigNum(std::string numString) {
     }
 
     return list;
-       
 }
 
 std::list<int> BigNumCalc::add(std::list<int> num1, std::list<int> num2) {
@@ -93,7 +92,7 @@ std::list<int> BigNumCalc::add(std::list<int> num1, std::list<int> num2) {
 std::list<int> BigNumCalc::sub(std::list<int> num1, std::list<int> num2) {
 
     // add leading zeroes if necessary
-    //! NOTE: we're assuming num1 > num2
+    // NOTE: we're assuming num1 > num2
     int num_difference = abs(num2.size() - num1.size());
     for (int i = 0; i < num_difference; i++) {
 
@@ -115,30 +114,24 @@ std::list<int> BigNumCalc::sub(std::list<int> num1, std::list<int> num2) {
     std::list<int>::reverse_iterator it1 = num1.rbegin();
     std::list<int>::reverse_iterator it2 = num2.rbegin();
 
-    // initialise sum_digit and remainder
+    // initialise difference_digit and borrow
     int difference_digit;
+    int borrow = 0;
 
     // loop
     while (it1 != num1.rend()) {
 
-        // check condition
+        // check it1 < it2
         if (*it1 < *it2) {
 
-            // subtract two digits with a carry
-            difference_digit = (*it1 + 10) - *it2;
-
-            //! should be a better way of doing this
-            it1++;
-            (*it1)--;
-            it1--;
+            // call getBorrow which returns a number
+            int borrowedValue = borrowPrevious(it1);
+            *it1 = *it1 + borrowedValue;
         }
 
-        else {
-            
-            // subtract two digits normally
-            difference_digit = *it1 - *it2;
-        }
-        
+        // subtract two digits
+        difference_digit = *it1 - *it2;
+       
         // add difference_digit to difference list and increment iterators
         difference.push_front(difference_digit);
         it1++;
@@ -169,8 +162,6 @@ std::list<int> BigNumCalc::mul(std::list<int> num1, std::list<int> num2) {
     // initialise reverse iterators so we can start at end of lists
     std::list<int>::reverse_iterator it1 = num1.rbegin();
     std::list<int>::reverse_iterator it2 = num2.rbegin();
-
-
 
     // initialise sum_digit and remainder
     int product_digit;
@@ -207,4 +198,24 @@ std::list<int> BigNumCalc::mul(std::list<int> num1, std::list<int> num2) {
     }
 
     return product;
+}
+
+ // sub helper function
+int BigNumCalc::borrowPrevious(std::list<int>::reverse_iterator it1) {
+
+    // go to previous digit
+    it1++;
+
+    // check if equal to 0
+    if (*it1 == 0) {
+
+        int borrowedValue = borrowPrevious(it1);
+        *it1 = *it1 + borrowedValue;
+    }
+
+    // take one away from previous digit
+    *it1 = *it1 - 1;
+
+    // return 10 since that equates to 1 of the previous digit
+    return 10;
 }

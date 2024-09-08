@@ -23,6 +23,9 @@ class BigNumCalc {
     // method to substract num2 from num1 and return the difference
     std::list<int> sub(std::list<int> num1, std::list<int> num2);
 
+    // sub helper function
+    int borrowPrevious(std::list<int>::reverse_iterator it1);
+
     // method to multiply num1 by num2 and return the product (assume num2 will be 1 digit long)
     std::list<int> mul(std::list<int> num1, std::list<int> num2);
     
