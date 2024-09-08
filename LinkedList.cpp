@@ -186,7 +186,10 @@ void LinkedList::printList() {
             first = false;
         }
 
-        std::cout  << " " << currNode->data;
+        else {
+            std::cout  << " " << currNode->data;
+        }
+
         currNode = currNode->link;
     }
 
