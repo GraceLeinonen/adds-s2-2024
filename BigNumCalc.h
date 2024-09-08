@@ -1,15 +1,15 @@
 #include <list>
 #include <string>
 
-class bigNumCalc {
+class BigNumCalc {
 
     public:
 
     // constructor
-    bigNumCalc();
+    BigNumCalc();
 
     // destructor
-    ~bigNumCalc();
+    ~BigNumCalc();
 
     // a method that creates a list representing the provided string
     std::list<int> buildBigNum(std::string numString);

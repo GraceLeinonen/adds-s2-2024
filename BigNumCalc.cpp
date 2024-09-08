@@ -1,13 +1,13 @@
-#include "bigNumCalc.h"
+#include "BigNumCalc.h"
 #include <string>
 #include <cmath>
 #include <iostream>
 
-bigNumCalc::bigNumCalc() {}
+BigNumCalc::BigNumCalc() {}
 
-bigNumCalc::~bigNumCalc() {}
+BigNumCalc::~BigNumCalc() {}
 
-std::list<int> bigNumCalc::buildBigNum(std::string numString) {
+std::list<int> BigNumCalc::buildBigNum(std::string numString) {
 
     // initialise list
     std::list<int> list;
@@ -27,7 +27,7 @@ std::list<int> bigNumCalc::buildBigNum(std::string numString) {
        
 }
 
-std::list<int> bigNumCalc::add(std::list<int> num1, std::list<int> num2) {
+std::list<int> BigNumCalc::add(std::list<int> num1, std::list<int> num2) {
 
     // add leading zeroes if necessary
     int num_difference = abs(num2.size() - num1.size());
@@ -90,7 +90,7 @@ std::list<int> bigNumCalc::add(std::list<int> num1, std::list<int> num2) {
     return sum;
 }
 
-std::list<int> bigNumCalc::sub(std::list<int> num1, std::list<int> num2) {
+std::list<int> BigNumCalc::sub(std::list<int> num1, std::list<int> num2) {
 
     // add leading zeroes if necessary
     //! NOTE: we're assuming num1 > num2
@@ -161,7 +161,7 @@ std::list<int> bigNumCalc::sub(std::list<int> num1, std::list<int> num2) {
     return difference;
 }
 
-std::list<int> bigNumCalc::mul(std::list<int> num1, std::list<int> num2) {
+std::list<int> BigNumCalc::mul(std::list<int> num1, std::list<int> num2) {
 
     // initialise list for product
     std::list<int> product;
