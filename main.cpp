@@ -1,4 +1,3 @@
-/*
 #include <iostream>
 #include <vector>
 #include <limits>
@@ -103,8 +102,6 @@ int main(void) {
 	return 0;
 }
 
-*/
-
 /*
 #include <iostream>
 #include <vector>
@@ -151,6 +148,7 @@ int main() {
 }
 */
 
+/*
 #include <iostream>
 #include <list>
 #include <string>
@@ -177,3 +175,4 @@ int main() {
 
     return 0;
 }
+*/

@@ -41,26 +41,18 @@ void LinkedList::insertPosition(int pos, int newNum) {
     int index = 1;
 
     // traverse to position before or end of list
-    while (prevNode != nullptr && index < pos - 1) {
+    while (prevNode->getLink() != nullptr && index < pos - 1) {
 
         prevNode = prevNode->getLink();
         index++;
-
     }
 
     // check if position is out of bounds
-    if (prevNode == nullptr) {
+    if (prevNode->getLink() == nullptr) {
 
         // add node to end of list
-        Node* lastNode = head;
-
-        while (lastNode->getLink() != nullptr) {
-            lastNode = lastNode->getLink();
-        }
-
         Node* newNode = new Node(newNum, nullptr);
-        lastNode->setLink(newNode);
-
+        prevNode->setLink(newNode);
     }
 
     // add node within list
@@ -68,7 +60,6 @@ void LinkedList::insertPosition(int pos, int newNum) {
 
         Node* newNode = new Node(newNum, prevNode->getLink());
         prevNode->setLink(newNode);
-        return;
     }
 }
 
@@ -79,27 +70,23 @@ bool LinkedList::deletePosition(int pos) {
         return false;
     }
 
-    Node* temp = head;
+    Node* prevNode = head;
 
     // delete node from front of list
     if (pos == 1) {
-
         head = head->getLink();
-        delete temp;
-
+        delete prevNode;
         return true;
     }
 
-    Node* prevNode = head;
+     // traverse to position before
     int index = 1;
-
-    // traverse to position before
     while (prevNode != nullptr && index < pos - 1) {
 
         prevNode = prevNode->getLink();
         index++;
-
     }
+
 
     // if position is out of bounds, can't delete
     if (prevNode == nullptr || prevNode->getLink() == nullptr) {
@@ -107,11 +94,11 @@ bool LinkedList::deletePosition(int pos) {
         return false;
     }
 
+    // delete within or at end of list
     else {
-
-        Node* temp = prevNode->getLink()->getLink();
+        Node* nextNode = prevNode->getLink()->getLink();
         delete prevNode->getLink();
-        prevNode->setLink(temp);
+        prevNode->setLink(nextNode);
 
         return true;
     }
