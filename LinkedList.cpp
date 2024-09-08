@@ -37,9 +37,8 @@ void LinkedList::insertPosition(int pos, int newNum) {
         return;
     }
     
-    //! SHOULD THINK OF A DIFFERENT NAME INSTEAD OF PREV???
     Node* prevNode = head;
-    int index = 1; //! WHY???
+    int index = 1;
 
     // traverse to position before or end of list
     while (prevNode != nullptr && index < pos - 1) {
@@ -49,7 +48,6 @@ void LinkedList::insertPosition(int pos, int newNum) {
 
     }
 
-    //! go over this!!! I DON'T UNDERSTAND THIS!
     // check if position is out of bounds
     if (prevNode == nullptr) {
 
@@ -104,14 +102,13 @@ bool LinkedList::deletePosition(int pos) {
     }
 
     // if position is out of bounds, can't delete
-    if (prevNode == nullptr || prevNode->getLink() == nullptr) { //! GO OVER THIS
+    if (prevNode == nullptr || prevNode->getLink() == nullptr) {
 
         return false;
     }
 
     else {
 
-        //! GO OVER THIS
         Node* temp = prevNode->getLink()->getLink();
         delete prevNode->getLink();
         prevNode->setLink(temp);
