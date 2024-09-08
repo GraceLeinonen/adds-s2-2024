@@ -176,10 +176,17 @@ void LinkedList::printList() {
 
     Node* currNode = head;
 
-    std::cout << "[ ";
+    std::cout << "[";
+    bool first = true;
+
     while (currNode != nullptr) {
 
-        std::cout  << currNode->data << " ";
+        if (first) {
+            std::cout << currNode->data;
+            first = false;
+        }
+
+        std::cout  << " " << currNode->data;
         currNode = currNode->link;
     }
 
