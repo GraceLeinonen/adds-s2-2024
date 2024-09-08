@@ -116,7 +116,6 @@ std::list<int> BigNumCalc::sub(std::list<int> num1, std::list<int> num2) {
 
     // initialise difference_digit and borrow
     int difference_digit;
-    int borrow = 0;
 
     // loop
     while (it1 != num1.rend()) {
