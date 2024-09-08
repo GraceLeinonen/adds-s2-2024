@@ -44,7 +44,7 @@ void LinkedList::insertPosition(int pos, int newNum) {
     // traverse to position before or end of list
     while (prevNode != nullptr && index < pos - 1) {
 
-        prevNode = prevNode->link;
+        prevNode = prevNode->getLink();
         index++;
 
     }
@@ -56,18 +56,20 @@ void LinkedList::insertPosition(int pos, int newNum) {
         // add node to end of list
         Node* lastNode = head;
 
-        while (lastNode->link != nullptr) {
-            lastNode = lastNode->link;
+        while (lastNode->getLink() != nullptr) {
+            lastNode = lastNode->getLink();
         }
-        lastNode->link = new Node(newNum, nullptr);
+
+        Node* newNode = new Node(newNum, nullptr);
+        lastNode->setLink(newNode);
 
     }
 
     // add node within list
     else {
 
-        Node* newNode = new Node(newNum, prevNode->link);
-        prevNode->link = newNode;
+        Node* newNode = new Node(newNum, prevNode->getLink());
+        prevNode->setLink(newNode);
         return;
     }
 }
@@ -84,7 +86,7 @@ bool LinkedList::deletePosition(int pos) {
     // delete node from front of list
     if (pos == 1) {
 
-        head = head->link;
+        head = head->getLink();
         delete temp;
 
         return true;
@@ -96,13 +98,13 @@ bool LinkedList::deletePosition(int pos) {
     // traverse to position before
     while (prevNode != nullptr && index < pos - 1) {
 
-        prevNode = prevNode->link;
+        prevNode = prevNode->getLink();
         index++;
 
     }
 
     // if position is out of bounds, can't delete
-    if (prevNode == nullptr || prevNode->link == nullptr) { //! GO OVER THIS
+    if (prevNode == nullptr || prevNode->getLink() == nullptr) { //! GO OVER THIS
 
         return false;
     }
@@ -110,9 +112,9 @@ bool LinkedList::deletePosition(int pos) {
     else {
 
         //! GO OVER THIS
-        Node* temp = prevNode->link->link;
-        delete prevNode->link;
-        prevNode->link = temp;
+        Node* temp = prevNode->getLink()->getLink();
+        delete prevNode->getLink();
+        prevNode->setLink(temp);
 
         return true;
     }
@@ -131,7 +133,7 @@ int LinkedList::get(int pos) {
 
     while (currNode != nullptr && index < pos) {
 
-        currNode = currNode->link;
+        currNode = currNode->getLink();
         index++;
     }
 
@@ -145,7 +147,7 @@ int LinkedList::get(int pos) {
     // valid position
     else {
 
-        return currNode->data;
+        return currNode->getData();
     }
 }
 
@@ -156,10 +158,10 @@ int LinkedList::search(int target) {
 
     while (currNode != nullptr) {
 
-        currNode = currNode->link;
+        currNode = currNode->getLink();
         index++;
 
-        if (currNode->data == target) {
+        if (currNode->getData() == target) {
             
             return index;
         }
@@ -182,15 +184,15 @@ void LinkedList::printList() {
     while (currNode != nullptr) {
 
         if (first) {
-            std::cout << currNode->data;
+            std::cout << currNode->getData();
             first = false;
         }
 
         else {
-            std::cout  << " " << currNode->data;
+            std::cout  << " " << currNode->getData();
         }
 
-        currNode = currNode->link;
+        currNode = currNode->getLink();
     }
 
     std::cout << "]" << std::endl;

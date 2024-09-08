@@ -3,11 +3,16 @@
 
 class Node {
 
-    public:
+    private:
     int data;
     Node* link;
 
+    public:
     Node(int, Node*);
+    int getData();
+    Node* getLink();
+    void setData(int data);
+    void setLink(Node* link);
 
 };
 
