@@ -1,5 +1,6 @@
 #include "bigNumCalc.h"
 #include <string>
+#include <cmath>
 #include <iostream>
 
 bigNumCalc::bigNumCalc() {}
@@ -162,6 +163,48 @@ std::list<int> bigNumCalc::sub(std::list<int> num1, std::list<int> num2) {
 
 std::list<int> bigNumCalc::mul(std::list<int> num1, std::list<int> num2) {
 
-    std::list<int> list;
-    return list;
+    // initialise list for product
+    std::list<int> product;
+
+    // initialise reverse iterators so we can start at end of lists
+    std::list<int>::reverse_iterator it1 = num1.rbegin();
+    std::list<int>::reverse_iterator it2 = num2.rbegin();
+
+
+
+    // initialise sum_digit and remainder
+    int product_digit;
+    int remainder = 0;
+
+    // loop
+    while (it1 != num1.rend()) {
+
+        product_digit = *it1 * *it2;
+
+        // check for previous remainder
+        if (remainder != 0) {
+            product_digit = product_digit + remainder;
+        }
+
+        // check for new remainder
+        if (product_digit > 9) {
+            remainder = floor(product_digit / 10);
+            product_digit = product_digit % 10;
+        }
+
+        else {
+            remainder = 0;
+        }
+
+        // add sum_digit to sum list and increment num1 iterator
+        product.push_front(product_digit);
+        it1++;
+    }
+
+    // check for final remainder
+    if (remainder != 0) {
+        product.push_front(remainder);
+    }
+
+    return product;
 }

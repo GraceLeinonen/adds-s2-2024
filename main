@@ -1,4 +1,3 @@
-/*
 #include <iostream>
 #include <vector>
 #include <limits>
@@ -102,7 +101,6 @@ int main(void) {
 
 	return 0;
 }
-*/
 
 /*
 #include <iostream>
@@ -150,6 +148,7 @@ int main() {
 }
 */
 
+/*
 #include <iostream>
 #include <list>
 #include <string>
@@ -160,15 +159,15 @@ int main() {
 
     bigNumCalc calc;
 
-    std::string num1String = "800";
-    std::string num2String = "750";
+    std::string num1String = "56804";
+    std::string num2String = "9";
 
     std::list<int> num1 = calc.buildBigNum(num1String);
     std::list<int> num2 = calc.buildBigNum(num2String);
 
-    std::list<int> difference = calc.sub(num1, num2);
+    std::list<int> product = calc.mul(num1, num2);
 
-    for (std::list<int>::iterator it = difference.begin(); it != difference.end(); ++it) {
+    for (std::list<int>::iterator it = product.begin(); it != product.end(); ++it) {
         std::cout << *it << " ";  
     }
 
@@ -176,3 +175,4 @@ int main() {
 
     return 0;
 }
+*/

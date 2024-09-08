@@ -1,16 +1,16 @@
 #include "LinkedList.h"
+#include <limits>
 #include <iostream>
 
 LinkedList::LinkedList() {
     
     head = nullptr; 
-
 }
 
-    
 LinkedList::LinkedList(int* array, int len) {
 
-    // 
+    head = nullptr; 
+
     for (int i = 1; i <= len; i++) {
 
         insertPosition(i, array[i-1]);
@@ -19,22 +19,12 @@ LinkedList::LinkedList(int* array, int len) {
 
 LinkedList::~LinkedList() {
 
-    Node* currNode = head;
-    Node* prevNode = nullptr;
-    int tempPos = 0;
+    // traverse to position before
+    while (head != nullptr) {
 
-    // traverse to find length
-    while (currNode != nullptr) {
+        // delete from front
+        deletePosition(1);
 
-        prevNode = currNode;
-        currNode = currNode->link;
-        tempPos++;
-    }
-
-    // delete at each positon until you reach the end
-    for (int i = 1; i <= tempPos; i++) {
-
-        deletePosition(i);
     }
 }
 
@@ -47,22 +37,29 @@ void LinkedList::insertPosition(int pos, int newNum) {
         return;
     }
     
+    //! SHOULD THINK OF A DIFFERENT NAME INSTEAD OF PREV???
     Node* prevNode = head;
-    int prevPos = 0;
+    int index = 1; //! WHY???
 
-    // traverse to position before
-    while (prevNode != nullptr && prevPos < pos - 1) {
+    // traverse to position before or end of list
+    while (prevNode != nullptr && index < pos - 1) {
 
         prevNode = prevNode->link;
-        prevPos++;
+        index++;
+
     }
 
-    // add node to end of list
+    //! go over this!!! I DON'T UNDERSTAND THIS!
+    // check if position is out of bounds
     if (prevNode == nullptr) {
 
-        Node* newNode = new Node(newNum, nullptr);
-        prevNode->link = newNode;
-        return;
+        // add node to end of list
+        Node* lastNode = head;
+
+        while (lastNode->link != nullptr) {
+            lastNode = lastNode->link;
+        }
+        lastNode->link = new Node(newNum, nullptr);
 
     }
 
@@ -82,39 +79,40 @@ bool LinkedList::deletePosition(int pos) {
         return false;
     }
 
-    Node* currNode = head;
-    Node* prevNode;
-    int tempPos = 0;
+    Node* temp = head;
 
     // delete node from front of list
-    if (head != nullptr && pos == 1) { //! second case deals with if list is currently empty and position > 1
+    if (pos == 1) {
 
-        head = currNode->link;
         head = head->link;
-        delete currNode;
+        delete temp;
 
         return true;
     }
 
-    // traverse to position
-    while (currNode != nullptr && tempPos != pos) {
+    Node* prevNode = head;
+    int index = 1;
 
-        prevNode = currNode;
-        currNode = currNode->link;
-        tempPos++;
+    // traverse to position before
+    while (prevNode != nullptr && index < pos - 1) {
+
+        prevNode = prevNode->link;
+        index++;
+
     }
 
-    
-    if (pos > tempPos) { //! if you reach nullptr before position, then position is out of bounds, so can't delete
+    // if position is out of bounds, can't delete
+    if (prevNode == nullptr || prevNode->link == nullptr) { //! GO OVER THIS
 
         return false;
-
     }
 
     else {
 
-        prevNode->link = currNode->link;
-        delete currNode;
+        //! GO OVER THIS
+        Node* temp = prevNode->link->link;
+        delete prevNode->link;
+        prevNode->link = temp;
 
         return true;
     }
@@ -122,8 +120,14 @@ bool LinkedList::deletePosition(int pos) {
 
 int LinkedList::get(int pos) {
 
+    // if trying to access before list
+    if (pos < 1) {
+
+        return std::numeric_limits<int>::max();
+    }
+
     Node* currNode = head;
-    int index = 0;
+    int index = 1;
 
     while (currNode != nullptr && index < pos) {
 
@@ -131,13 +135,24 @@ int LinkedList::get(int pos) {
         index++;
     }
 
-    return currNode->data;
+    // if trying to access after list
+    if (currNode == nullptr) {
+
+       return std::numeric_limits<int>::max();
+
+    }
+
+    // valid position
+    else {
+
+        return currNode->data;
+    }
 }
 
 int LinkedList::search(int target) {
 
     Node* currNode = head;
-    int index = 0;
+    int index = 1;
 
     while (currNode != nullptr) {
 
@@ -155,14 +170,19 @@ int LinkedList::search(int target) {
 
 void LinkedList::printList() {
 
-    Node* currNode = head;
-
-    while (currNode != nullptr) {
-
-        currNode = currNode->link;
-
-        std::cout << " [" << currNode->data << "] ";
+     if (head == nullptr) {
+        return;
     }
 
-    std::cout << std::endl;
+    Node* currNode = head;
+
+    std::cout << "[ ";
+    while (currNode != nullptr) {
+
+        std::cout  << currNode->data << " ";
+        currNode = currNode->link;
+    }
+
+    std::cout << "]" << std::endl;
+
 }
