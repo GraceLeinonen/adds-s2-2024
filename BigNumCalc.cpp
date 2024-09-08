@@ -13,7 +13,7 @@ std::list<int> BigNumCalc::buildBigNum(std::string numString) {
     std::list<int> list;
 
     // convert string to integer
-    int number = std::stoi(numString);
+    long number = std::stol(numString);
 
     // extract digits from number and put into list
     while (number > 0) {
