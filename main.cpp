@@ -1,11 +1,11 @@
-#include "InsertionSort.h"
+#include "MergeSort.h"
 #include <iostream>
 
 int main() {
 
-    InsertionSort insertionSort;
+    MergeSort mergeSort;
     std::vector<int> array = {1,5,3,7,4};
-    insertionSort.sort(array);
+    mergeSort.sort(array, 0, 6);
 
     for (int i = 0; i < array.size(); i++) {
         std::cout << array[i] << " ";
