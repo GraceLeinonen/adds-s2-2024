@@ -1,11 +1,11 @@
-#include "MergeSort.h"
+#include "MergeSort2.h"
 #include <iostream>
 
 int main() {
 
-    MergeSort mergeSort;
+    MergeSort2 mergeSort;
     std::vector<int> array = {1,5,3,7,4};
-    mergeSort.sort(array, 0, 6);
+    array = mergeSort.sort(array);
 
     for (int i = 0; i < array.size(); i++) {
         std::cout << array[i] << " ";
