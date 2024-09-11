@@ -143,7 +143,7 @@ void LinkedList<T>::insertPosition(T data, int position) {
     Node<T>* prevNode = traverse(position - 1);
 
     // position greater than or equal to back
-    if (prevNode == nullptr || prevNode->getLink() == nullptr) { //! ORDER MATTERS! WHY?
+    if (prevNode == nullptr || prevNode->getLink() == nullptr) { //! if first was true, second wouldn't exist
         insertBack(data);
     }
 
@@ -214,13 +214,13 @@ void LinkedList<T>::deletePosition(int position) {
     Node<T>* prevNode = traverse(position - 1);
 
     // position greater than or equal to back
-    if (prevNode == nullptr || prevNode->getLink() == nullptr) { //! ORDER MATTERS! WHY?
+    if (prevNode == nullptr || prevNode->getLink() == nullptr) { //! if first was true, second wouldn't exist
         deleteBack();
     }
 
     else {
         Node<T>* temp = prevNode->getLink();
-        prevNode->setLink(prevNode->getLink()->getLink()); //! go over prevNode = newNode vs prevNode->setLink(newNode)
+        prevNode->setLink(prevNode->getLink()->getLink()); //! prevNode = newNode vs prevNode->setLink(newNode) - first changes actual previous node, second changes what the link inside previous node is pointing to
         delete temp;
     }
 }
@@ -255,7 +255,7 @@ int LinkedList<T>::getPosition(T data) {
     // traverse
     Node<T>* currNode = head;
     int index = 1;
-    while (head != nullptr) {
+    while (currNode != nullptr) {
 
         if (currNode->getData() == data) {
             return index;
@@ -265,7 +265,7 @@ int LinkedList<T>::getPosition(T data) {
         index++;
     }
 
-    return 0; //! not sure why but this is causing segmentation fault
+    return 0;
 }
 
 template<typename T>
