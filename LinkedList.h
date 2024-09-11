@@ -265,7 +265,7 @@ int LinkedList<T>::getPosition(T data) {
         index++;
     }
 
-    return 0;
+    return 0; //! not sure why but this is causing segmentation fault
 }
 
 template<typename T>
