@@ -1,11 +1,11 @@
-#include "QuickSort2.h"
+#include "InsertionSort.h"
 #include <iostream>
 
 int main() {
 
-    QuickSort2 sort;
+    InsertionSort sort;
     std::vector<int> array = {1,5,3,7,4};
-    array = sort.sort(array);
+    sort.sort(array);
 
     for (int i = 0; i < array.size(); i++) {
         std::cout << array[i] << " ";
