@@ -5,7 +5,7 @@
 class BubbleSort {
 
     public:
-    void sort(std::vector<int> array);
+    void sort(std::vector<int>& array);
 
 };
 
