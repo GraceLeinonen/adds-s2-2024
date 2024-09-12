@@ -1,9 +1,9 @@
-#include "CountingSort.h"
+#include "QuickSort2.h"
 #include <iostream>
 
 int main() {
 
-    CountingSort sort;
+    QuickSort2 sort;
     std::vector<int> array = {1,5,3,7,4};
     array = sort.sort(array);
 
