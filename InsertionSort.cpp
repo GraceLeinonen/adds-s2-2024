@@ -26,6 +26,7 @@ class InsertionSort {
 
 //  THIS WORKS ON OTHER FILE BUT NOT HERE!?
 
+/*
 int main() {
 
     InsertionSort sort;
@@ -39,3 +40,4 @@ int main() {
     std::cout << std::endl;
     return 0;
 }
+*/
