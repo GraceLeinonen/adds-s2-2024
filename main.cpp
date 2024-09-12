@@ -1,9 +1,9 @@
-#include "InsertionSort.h"
+#include "BubbleSort.h"
 #include <iostream>
 
 int main() {
 
-    InsertionSort sort;
+    BubbleSort sort;
     std::vector<int> array = {1,5,3,7,4};
     sort.sort(array);
 
