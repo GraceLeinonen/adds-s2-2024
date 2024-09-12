@@ -25,7 +25,7 @@ std::vector<int> CountingSort::sort(std::vector<int> array) {
         count.at(i) = count.at(i) + count.at(i-1);
     }
 
-    // create new vector for sorted array; initialise size to be array.suze() and elements to be 0
+    // create new vector for sorted array; initialise size to be array.size() and elements to be 0
     std::vector<int> result(array.size(), 0);
 
     for (int i = 0; i < array.size(); i++) {
