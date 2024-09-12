@@ -4,12 +4,12 @@
 std::vector<int> CountingSort::sort(std::vector<int> array) {
 
     // find maximum element
-    int max = array[0];
+    int max = array.at(0);
 
     for (int i = 0; i < array.size(); i++) {
 
         if (array.at(i) > max) {
-            array.at(i) = max;
+            max = array.at(i);
         }
     }
 
@@ -19,11 +19,11 @@ std::vector<int> CountingSort::sort(std::vector<int> array) {
     // count the occurences of each number and put number in associated index of count;
     for (int i = 0; i < array.size(); i++) {
 
-        count.at(array.at(i) - 1)++;
+        count[(array.at(i) - 1)]++;
     }
 
     // find cumulative sum
-    for (int i = 0; i < count.size(); i++) {
+    for (int i = 1; i < count.size(); i++) {
         count.at(i) = count.at(i) + count.at(i-1);
     }
 
