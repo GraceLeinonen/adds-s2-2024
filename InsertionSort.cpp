@@ -12,9 +12,9 @@ class InsertionSort {
 
                 if (array.at(j) < array.at(j-1)) {
 
-                    int temp = array.at(j);
-                    array.at(j) = array.at(j-1);
-                    array.at(j-1) = temp;
+                    int temp = array[j];
+                    array[j] = array[j-1];
+                    array[j-1] = temp;
 
                 }
 
