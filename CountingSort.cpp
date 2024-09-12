@@ -33,7 +33,7 @@ std::vector<int> CountingSort::sort(std::vector<int> array) {
     for (int i = 0; i < array.size(); i++) {
 
         int result_index = count.at(array.at(i) - 1);
-        result.at(result_index) = array.at(i);
+        result.at(result_index - 1) = array.at(i);
     }
 
     // return result
