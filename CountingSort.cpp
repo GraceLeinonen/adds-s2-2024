@@ -1,4 +1,5 @@
 #include "CountingSort.h"
+#include <iostream>
 
 std::vector<int> CountingSort::sort(std::vector<int> array) {
 
@@ -10,36 +11,32 @@ std::vector<int> CountingSort::sort(std::vector<int> array) {
         }
     }
 
-    // create new vector for count
-    std::vector<int> count(max - 1, 0);
+    // create new vector for count; initialise size to be max and elements to be 0
+    std::vector<int> count(max, 0);
 
-    //
+    // fill buckets
     for (int i = 0; i < array.size(); i++) {
-
         count[array.at(i)-1]++;
     }
 
     // find cumulative sum
-    for (int i = 1; i < array.size(); i++) {
+    for (int i = 1; i < count.size(); i++) {
 
         count.at(i) = count.at(i) + count.at(i-1);
     }
 
-    // create new vector for sorted array
-    std::vector<int> result;
+    // create new vector for sorted array; initialise size to be array.suze() and elements to be 0
+    std::vector<int> result(array.size(), 0);
 
     for (int i = 0; i < array.size(); i++) {
 
-        int index = array.at(i);
-        result.insert(index, array.at(i));
+        // get index for cummulative sum (count)
+        int index_cum_sum = array.at(i);        
+        int index_result = count.at(index_cum_sum - 1);
+        result.at(index_result - 1) = array.at(i);
 
     }
 
-    
-
-
-
-
-
+    return result;
 
 }
