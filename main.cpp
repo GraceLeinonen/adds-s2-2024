@@ -1,11 +1,11 @@
-#include "BubbleSort.h"
+#include "CountingSort.h"
 #include <iostream>
 
 int main() {
 
-     BubbleSort sort;
+    CountingSort sort;
     std::vector<int> array = {1,5,3,7,4};
-    sort.sort(array);
+    array = sort.sort(array);
 
     for (int i = 0; i < array.size(); i++) {
         std::cout << array[i] << " ";
