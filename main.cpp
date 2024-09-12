@@ -3,14 +3,16 @@
 
 int main() {
 
-    BubbleSort sort;
-    std::vector<int> array = {5,3,7,10,3,5};
+     BubbleSort sort;
+    std::vector<int> array = {1,5,3,7,4};
     sort.sort(array);
 
     for (int i = 0; i < array.size(); i++) {
-        std::cout << array.at(i) << " ";
+        std::cout << array[i] << " ";
+
     }
 
     std::cout << std::endl;
+
     return 0;
 }
