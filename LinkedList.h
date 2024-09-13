@@ -40,9 +40,6 @@ class LinkedList {
     // print
     void print();
     
-
-    
-
 };
 
 template<typename T>
@@ -281,6 +278,5 @@ void LinkedList<T>::print() {
     std::cout << std::endl;
 
 }
-
 
 #endif
