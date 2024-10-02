@@ -2,12 +2,12 @@
 
 int main() {
 
-    Stack<int> stack;
-    stack.push(1);
+    Stack<char> stack;
+    stack.push('a');
     stack.print();
-    stack.push(2);
+    stack.push('b');
     stack.print();
-    stack.push(3);
+    stack.push('c');
     stack.print();
     stack.pop();
     stack.print();
