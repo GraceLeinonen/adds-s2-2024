@@ -37,16 +37,17 @@ Queue<T>::~Queue() {}
 template <typename T>
 void Queue<T>::enqueue(T data) {
 
-    Node<T>* newNode = new Node(data);
+    Node<T>* newNode = new Node<T>(data);
 
     // queue is empty
     if (isEmpty()) {
+        head = newNode; //* NEED THIS!
         tail = newNode;
     }
 
     // queue is not empty
     else {
-        newNode->setLink(tail); //! WHY?
+        tail->setLink(newNode);
         tail = newNode;
 
     }
@@ -62,9 +63,8 @@ void Queue<T>::dequeue() {
 
     // queue is not empty
     Node<T>* temp = head;
-    head = head->getLink;
+    head = head->getLink();
     delete temp;
-
 
 }
 
@@ -89,7 +89,7 @@ void Queue<T>::print() {
         std::cout << "[" << currNode->getData() << "]";
         currNode = currNode->getLink();
     }
-    
+
     std::cout << std::endl;
 
 }
