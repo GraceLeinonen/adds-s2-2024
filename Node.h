@@ -6,11 +6,17 @@
 
 class Node {
 
+    private:
     std::string data;
     bool isEndOfWord;
     std::unordered_map<std::string, Node*> childMap;
-    Node* searchChildNodes(char data);
-};
 
+    public:
+    Node(std::string data);
+    Node* searchChildNodes(char data);
+    std::unordered_map<std::string, Node*> getChildMap();
+    bool getIsEndOfWord();
+    void setIsEndOfWord(bool isEndOfWord);
+};
 
 #endif

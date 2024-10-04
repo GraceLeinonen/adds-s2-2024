@@ -1,14 +1,23 @@
 #include "Node.h"
 
-Node* Autocomplete::Node::searchChildNodes(char data) {
+Node::Node(std::string data) {
 
-    for (int i = 0; i < childNodes.size(); i++) {
-        if (childNodes[i]->data == data) {
-            return childNodes[i];
-        }
-    }
+    this->data = data;
+    this->isEndOfWord = false;
     
-    return nullptr;
+}
 
-    
+std::unordered_map<std::string, Node*> Node::getChildMap() {
+
+    return childMap;
+}
+
+bool Node::getIsEndOfWord() {
+
+    return isEndOfWord;
+}
+
+void Node::setIsEndOfWord(bool isEndOfWord) {
+
+    this->isEndOfWord = isEndOfWord;
 }
