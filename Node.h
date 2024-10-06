@@ -9,14 +9,18 @@ class Node {
     private:
     std::string data;
     bool isEndOfWord;
-    std::unordered_map<std::string, Node*> childMap;
+    int number;
+    std::unordered_map<std::string, Node*> childMap; 
 
     public:
     Node(std::string data);
-    Node* searchChildNodes(char data);
-    std::unordered_map<std::string, Node*> getChildMap();
-    bool getIsEndOfWord();
+    std::unordered_map<std::string, Node*>& getChildMap();
+    std::string getData();
+    void setData(std::string data);
+    bool getIsEndOfWord(); 
     void setIsEndOfWord(bool isEndOfWord);
+    int getNumber();
+    void setNumber(int number);
 };
 
 #endif
