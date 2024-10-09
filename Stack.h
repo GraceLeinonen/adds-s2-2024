@@ -16,7 +16,7 @@ class Stack {
     ~Stack();
 
     void push(T data);
-    void pop();
+    T pop();
     bool isEmpty();
     void print();
 
@@ -50,11 +50,11 @@ void Stack<T>::push(T data) {
 }
 
 template<typename T>
-void Stack<T>::pop() {
+T Stack<T>::pop() {
 
     // list is empty
     if (top == nullptr) {
-        return;
+        return T();
     }
 
     // list is not empty
@@ -62,6 +62,7 @@ void Stack<T>::pop() {
 
     top = top->getLink();
     delete temp;
+    return data;
 
 }
 
