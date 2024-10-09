@@ -14,7 +14,7 @@ class BinarySearchTree {
     ~BinarySearchTree();
 
     bool search(T target);
-    void insert();
+    Node<T>* insert(Node<T>* node, T target);
     void remove();
 
 };
@@ -36,28 +36,47 @@ bool BinarySearchTree<T>::search(T target) {
     }
 
     // tree not empty
-    Node<T>* currNode;
+    Node<T>* currNode = root;
     while (currNode != nullptr) {
 
-        if (currNode == target) {
+        if (currNode->getData() == target) {
             return true;
         }
 
-        if (currNode < target) {
+        if (currNode>getData() < target) {
             search(currNode->getUpper());
         }
 
-        if (currNode > target) {
+        if (currNode>getData() > target) {
             search(currNode->getLower());
         }
-
 
 
     }
 }
 
 template <typename T>
-void BinarySearchTree<T>::insert() {}
+Node<T>* BinarySearchTree<T>::insert(Node<T>* currNode, T target) {
+
+    //* tree empty
+    if (currNode == nullptr) {
+        return new Node(target);
+    }
+
+    //* tree not empty
+    // insert to right subtree
+    if (currNode>getData() < target) {
+            currNode->getUpper() = insert(currNode->getUpper(), target);
+    }
+
+    // insert to right subtree
+    else if (currNode>getData() > target) {
+            currNode->getUpper() = insert(currNode->getLower(), target);
+    }
+
+    return currNode;
+
+}
 
 template <typename T>
 void BinarySearchTree<T>::remove() {}

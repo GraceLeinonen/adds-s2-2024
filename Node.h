@@ -7,12 +7,14 @@ class Node {
     private:
     T data;
     Node* lower;
-    Node* higher;
+    Node* upper;
     Node* parent;
 
     public:
     Node();
+    Node(T data);
     ~Node();
+
     T getData();
     void setData(T data);
     Node* getLower();
@@ -25,6 +27,14 @@ class Node {
 
 template <typename T>
 Node<T>::Node() {}
+
+template <typename T>
+Node<T>::Node(T data) {
+    this->data = data;
+    this->lower = nullptr;
+    this->upper = nullptr;
+    this->parent = nullptr;
+}
 
 template <typename T>
 Node<T>::~Node() {}
