@@ -154,14 +154,47 @@ class Heap {
         // Insert an element into the heap
         void insert(T element) {
 
-            tree.emplace_back(element);
-            heapify(tree);
-            
+            // append the new key to the end of the vector
+            tree.push_back(element);
+
+            // intialise index of element and parent
+            int index_child = tree.size() - 1;
+            int index_parent = (index_child - 1) / 2;
+
+            // while value at index is less than the parent and it is not at root
+            while (tree[index_child] < tree[index_parent] && index_child > 0) {
+
+                // swap child and parent
+                T temp = tree[index_parent];
+                tree[index_parent] = tree[index_child];
+                tree[index_child] = temp;
+
+                // update index to the parent index
+                index_child = index_parent;
+                index_parent = (index_child - 1) / 2;
+            }            
         }
         
         // TO BE IMPLEMENTED
         // Remove an element from the heap
         void remove(T value) {
+
+            // find index of element and last element
+            auto it_child = find(tree.begin(), tree.end(), value);
+            int index_child = std::distance(tree.begin(), it_child);
+            int index_end = tree.size() - 1;
+
+            // swap
+            T temp = tree[index_end];
+            tree[index_end] = tree[index_child];
+            tree[index_child] = temp;
+
+            // delete last element
+            tree.pop_back();
+
+            // heapify down
+            heapifyDown(index_child);
+            
         }
         
         // TO BE IMPLEMENTED
