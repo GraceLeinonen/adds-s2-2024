@@ -4,12 +4,11 @@
 void DocumentManager::addDocument(std::string name, int id, int license_limit) {
 
     documents.insert({id, Document(name, license_limit)});
-
 }
 
 void DocumentManager::addPatron(int patronID) {
 
-    patrons.push_back(patronID);
+    patrons.push_back(Patron(patronID));
 }
 
 int DocumentManager::search(std::string name) {
@@ -44,9 +43,31 @@ bool DocumentManager::borrowDocument(int docid, int patronID) {
     }
 
     // document can be borrowed
-    //! call borrow function?
+    it_patrons->borrow(docid, it_documents->second);
+
+    // set number borrowed
+    it_documents->second.setNumberBorrowed(it_documents->second.getNumberBorrowed() + 1);
+
+    // remove document from unordered map
+    documents.erase(docid);
+
+    // return
     return true;
 
 }
     
-void DocumentManager::returnDocument(int docid, int patronID) {}
+void DocumentManager::returnDocument(int docid, int patronID) {
+
+    // get patron
+    auto it_patrons = find(patrons.begin(), patrons.end(), patronID);
+
+    // get document from patron
+    Document document = it_patrons->getDocument(docid);
+
+    // insert into document manager
+    documents.insert({docid, document});
+
+    // set number borrowed
+    document.setNumberBorrowed(document.getNumberBorrowed() - 1);
+
+}

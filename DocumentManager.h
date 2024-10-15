@@ -5,12 +5,13 @@
 #include <vector>
 #include <unordered_map>
 #include "Document.h"
+#include "Patron.h"
 
 class DocumentManager {
 
     private:
     std::unordered_map<int, Document> documents;
-    std::vector<int> patrons;
+    std::vector<Patron> patrons;
 
     public:
     DocumentManager();

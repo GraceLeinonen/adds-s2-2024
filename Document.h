@@ -17,6 +17,7 @@ class Document {
 
     std::string getName();
     int getNumberBorrowed();
+    void setNumberBorrowed(int number_borrowed);
     int getLicenseLimit();
 
 };

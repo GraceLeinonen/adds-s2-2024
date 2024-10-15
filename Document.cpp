@@ -23,6 +23,10 @@ int Document::getNumberBorrowed() {
     return this->number_borrowed;
 }
 
+void Document::setNumberBorrowed(int number_borrowed) {
+    this->number_borrowed = number_borrowed;
+}
+
 int Document::getLicenseLimit() {
     return this->license_limit;
 }
