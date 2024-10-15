@@ -14,6 +14,7 @@ class DocumentManager {
     std::vector<Patron> patrons;
 
     public:
+
     DocumentManager();
     ~DocumentManager();
 

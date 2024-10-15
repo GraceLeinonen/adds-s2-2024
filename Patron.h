@@ -17,6 +17,9 @@ class Patron {
 
     void borrow(int docid, Document document);
     Document getDocument(int docid);
+    std::unordered_map<int, Document> getBorrowedDocuments();
+    int getPatronID();
+    bool operator==(int otherId);
 
 };
 
