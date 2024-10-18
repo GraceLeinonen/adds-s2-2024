@@ -18,7 +18,7 @@ void DocumentManager::addPatron(int patronID) {
 int DocumentManager::search(std::string name) {
 
     for (auto it = documents.begin(); it !=documents.end(); it++) {
-        if (it->second.getName() == name && it->second.getNumberBorrowed() < it->second.getLicenseLimit()) {
+        if (it->second.getName() == name) {
             return it->first;
         }
     }
@@ -82,3 +82,5 @@ void DocumentManager::returnDocument(int docid, int patronID) {
     return;
 
 }
+
+// && it->second.getNumberBorrowed() < it->second.getLicenseLimit()
