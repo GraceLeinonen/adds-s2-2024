@@ -1,25 +1,26 @@
 #ifndef PATRON_H
 #define PATRON_H
 
-#include <unordered_map>
+#include <vector>
 #include "Document.h"
 
 class Patron {
 
     private:
     int patronID;
-    std::unordered_map<int, Document> borrowedDocuments;
+    std::vector<int> borrowedDocuments;
 
     public:
     Patron();
     Patron(int patronID);
     ~Patron();
 
-    void borrow(int docid, Document document);
-    Document getDocument(int docid);
-    std::unordered_map<int, Document> getBorrowedDocuments();
+    void borrow(int docid);
+    void returnDocument(int docid);
+    bool searchDocuments(int docid);
+    std::vector<int> getBorrowedDocuments();
     int getPatronID();
-    bool operator==(int otherId);
+    bool operator==(int patronID);
 
 };
 

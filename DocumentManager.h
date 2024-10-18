@@ -10,8 +10,8 @@
 class DocumentManager {
 
     private:
-    std::unordered_map<int, Document> documents;
-    std::vector<Patron> patrons;
+    std::unordered_map<int, Document> documents; // unordered_map was used since the document ID can be used as the key, and the Documents can be accessed using the key
+    std::vector<Patron> patrons; // vector was used since
 
     public:
 

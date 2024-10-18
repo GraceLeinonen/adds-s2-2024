@@ -28,7 +28,7 @@ int DocumentManager::search(std::string name) {
 
 bool DocumentManager::borrowDocument(int docid, int patronID) {
 
-    // patron iterator
+    // iterators
     auto it_documents = documents.find(docid);
     auto it_patrons = std::find_if(patrons.begin(), patrons.end(), [patronID](Patron& p) { // got this piece of code online 
         return p.getPatronID() == patronID;
@@ -50,7 +50,7 @@ bool DocumentManager::borrowDocument(int docid, int patronID) {
     }
 
     // document can be borrowed
-    it_patrons->borrow(docid, it_documents->second);
+    it_patrons->borrow(docid);
 
     // set number borrowed
     it_documents->second.setNumberBorrowed(it_documents->second.getNumberBorrowed() + 1);
@@ -62,32 +62,23 @@ bool DocumentManager::borrowDocument(int docid, int patronID) {
     
 void DocumentManager::returnDocument(int docid, int patronID) {
 
-    // get patron
+    // iterators
+    auto it_documents = documents.find(docid);
     auto it_patrons = std::find_if(patrons.begin(), patrons.end(), [patronID](Patron& p) { // got this piece of code online 
         return p.getPatronID() == patronID;
     });
 
-    if (it_patrons->getDocument(docid) == it_patrons->getBorrowedDocuments().end()) {
-
+    // check that patron has the document - if patron doesn't have document, return
+    if (!it_patrons->searchDocuments(docid)) {
+        return;
     }
 
-    // get document
-    auto it_documents = documents.find(docid);
+    // return doccument
+    it_patrons->returnDocument(docid);
 
     // reset number borrowed
     it_documents->second.setNumberBorrowed(it_documents->second.getNumberBorrowed() - 1);
 
-    /*
-    // get patron
-    auto it_patrons = find(patrons.begin(), patrons.end(), patronID);
+    return;
 
-    // get document from patron
-    Document document = it_patrons->getDocument(docid);
-
-    // insert into document manager
-    documents.insert({docid, document});
-
-    // set number borrowed
-    document.setNumberBorrowed(document.getNumberBorrowed() - 1);
-    */
 }

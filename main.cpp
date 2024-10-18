@@ -26,6 +26,14 @@ int main() {
 
     std::cout << dm.search("book1") << std::endl;
 
+    dm.borrowDocument(100,1);
+
+    std::cout << dm.search("book1") << std::endl;
+
+    dm.borrowDocument(100,1);
+
+    std::cout << dm.search("book1") << std::endl;
+
     
     
 

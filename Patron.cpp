@@ -1,4 +1,5 @@
 #include "Patron.h"
+#include <algorithm>
 
 Patron::Patron() {
     
@@ -12,19 +13,31 @@ Patron::Patron(int patronID) {
 
 Patron::~Patron() {}
 
-void Patron::borrow(int docid, Document document) {
+void Patron::borrow(int docid) {
 
-    borrowedDocuments.insert({docid, document});
+    borrowedDocuments.push_back(docid);
 }
 
-Document Patron::getDocument(int docid) {
+bool Patron::searchDocuments(int docid) {
 
-    auto it_documents = borrowedDocuments.find(docid);
-    return it_documents->second;
+    auto it_documents = std::find(borrowedDocuments.begin(), borrowedDocuments.end(), docid);
+    
+    if (it_documents == borrowedDocuments.end()) {
+        return false;
+    }
+    
+    return true;
 
 }
 
-std::unordered_map<int, Document> Patron::getBorrowedDocuments() {
+void Patron::returnDocument(int docid) {
+
+    auto it_documents = std::find(borrowedDocuments.begin(), borrowedDocuments.end(), docid);
+    borrowedDocuments.erase(it_documents);
+    
+}
+
+std::vector<int> Patron::getBorrowedDocuments() {
 
     return borrowedDocuments;
 }
